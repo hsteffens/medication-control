@@ -1,0 +1,20 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col" ng-repeat="header in headers">{{::header}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="table-active" ng-repeat="item in items">
+      <th scope="row">
+          <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="checkbox + {{item.id.value}}" ng-model="item.selected">
+              <label class="custom-control-label" for="checkbox + {{item.id.value}}"></label>
+          </div>
+      </th>
+      <td ng-repeat="value in loadValues(item)">{{value}}</td>
+    </tr>
+  
+  </tbody>
+</table>

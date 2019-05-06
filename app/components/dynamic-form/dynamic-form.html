@@ -1,0 +1,14 @@
+<form name="dynamicForm">
+  <div class="form-group" ng-repeat="data in metadata.dataInfo">
+    <div ng-include="getTemplate(data.type)"></div>
+    <div ng-show="showRequiredError(data.label)" class="alert alert-danger" role="alert">
+      Por favor, preencha o campo {{data.label}}!
+    </div>
+  </div>
+
+  <div ng-disabled="!dynamicForm.$error.required"> 
+    <div id="cover" ng-show="dynamicForm.$error.required"></div>
+    <handlebar metadata="metadata" ></handlebar>
+  </div>
+    
+ </form>
