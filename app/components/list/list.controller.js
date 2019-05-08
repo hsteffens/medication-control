@@ -18,5 +18,12 @@ export function listController($scope) {
 
     return columns;
   }
+
+  $scope.onChange = function (selectedItem) {
+    $scope.items.forEach(item => item.selected = false);
+    selectedItem.selected = !selectedItem.selected;
+
+    $scope.$emit('onStateChange', true);
+  }
   
 }

@@ -1,34 +1,8 @@
-export function StocksController($scope, drugsFactory, stocksFactory) {
+export function StocksController($scope, stocksFactory) {
   'ngInject';
   $scope.title="Stocks";
   $scope.headers = ['Quantity','Name', 'Measurement unit', 'Orientation'];
   $scope.metadata = {};
-  $scope.metadata.handlers = [{
-      type: 'lnk', 
-      redirect: function () {
-        return 'stocks/0' 
-      },
-      label: 'Create',
-      disabled: false,
-      class: 'btn-info'
-    }, {
-      type: 'lnk', 
-      redirect: function () {
-        return 'stocks/' + $scope.getSelectedItem();
-      }, 
-      label: 'Update',
-      disabled: false,
-      class: 'btn-primary'
-    }, {
-      type: 'btn', 
-      action: function () {
-        $scope.deleteItem();
-      }, 
-      label: 'Delete',
-      disabled: false,
-      class: 'btn-danger'
-    }
-  ];
 
   $scope.items = stocksFactory.stocks;
   $scope.getSelectedItem = function (){
@@ -39,4 +13,44 @@ export function StocksController($scope, drugsFactory, stocksFactory) {
   $scope.deleteItem = function (){
     stocksFactory.remove($scope.getSelectedItem());
   }
+
+  $scope.refreshMetadata = function () {
+    $scope.metadata.handlers = [{
+        id: 'create',
+        type: 'lnk', 
+        redirect: function () {
+          return 'stocks/0' 
+        },
+        label: 'Create',
+        disabled: function (){
+          return false;
+        },
+        class: 'btn-info'
+      }, {
+        id: 'update',
+        type: 'lnk', 
+        redirect: function () {
+          return 'stocks/' + $scope.getSelectedItem();
+        }, 
+        label: 'Update',
+        disabled: _disabledAction,
+        class: 'btn-primary'
+      }, {
+        id: 'delete',
+        type: 'btn', 
+        action: function () {
+          $scope.deleteItem();
+        }, 
+        label: 'Delete',
+        disabled: _disabledAction,
+        class: 'btn-danger'
+      }
+    ];
+  }
+
+  function _disabledAction(){
+    return  $scope.getSelectedItem() < 1;
+  }
+
+  $scope.refreshMetadata();
 }

@@ -1,4 +1,4 @@
-export function HandlerController($scope) {
+export function HandlerController($scope, $element, HandlerBarDOMHandler) {
   $scope.templates = [{ 
       name: 'btn', url: 'components/handlebar/handlerbar-button.html'
     },{ 
@@ -10,5 +10,15 @@ export function HandlerController($scope) {
     let position = $scope.templates.map(element => element.name).indexOf(type);
     return $scope.templates[position].url;
   }
+
+  $scope.metadata.events = {
+    onChangeState: function () {
+      setTimeout(()=> {
+        $scope.DOMHandler = new HandlerBarDOMHandler($element, $scope);
+      }, 500);
+    }
+  };
+
+  $scope.metadata.events.onChangeState();
 
 }
