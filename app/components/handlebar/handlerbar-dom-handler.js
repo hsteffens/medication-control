@@ -21,6 +21,7 @@ export function HandlerBarDOMHandlerFactory() {
           if (handler.disabled()) {
             lnk[i].classList.add('disabled');
           } else {
+            lnk[i].classList.remove("disabled")
             lnk[i].classList.add(handler.class);
           }
             

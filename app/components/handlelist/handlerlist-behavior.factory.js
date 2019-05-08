@@ -8,7 +8,6 @@ export function HandleListBehaviorFactory() {
 
   function creator(scope) {
     scope.$on('onStateChange', function (event, state) {
-      scope.$parent.refreshMetadata();
       scope.metadata.events.onChangeState();
     });
   }

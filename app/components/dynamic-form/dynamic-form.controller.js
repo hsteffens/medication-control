@@ -1,4 +1,4 @@
-export function DynamicFormController($scope, $element) {
+export function DynamicFormController($scope) {
   $scope.templates = [{ 
       name: 'txt', url: 'components/dynamic-form/dynamic-form-text.html'
     },{ 
