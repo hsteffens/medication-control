@@ -9,11 +9,11 @@
     <tr class="table-active" ng-repeat="item in items">
       <th scope="row">
           <div class="custom-control custom-checkbox">
-              <input type="checkbox" class="custom-control-input" id="checkbox + {{item.id.value}}" ng-model="item.selected">
+              <input type="checkbox" class="custom-control-input" id="checkbox + {{item.id.value}}" ng-model="item.selected" ng-click="onChange(item)">
               <label class="custom-control-label" for="checkbox + {{item.id.value}}"></label>
           </div>
       </th>
-      <td ng-repeat="value in loadValues(item)">{{value}}</td>
+      <td ng-repeat="value in loadValues(item) track by $index">{{value}}</td>
     </tr>
   
   </tbody>

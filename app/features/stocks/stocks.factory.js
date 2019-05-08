@@ -23,12 +23,23 @@ export function StocksFactory() {
 
     function build() {
       obj.id = {
-        value: stocks.length + 1,
+        value: _getId(),
         show: false
       };
       
       return obj;
     }
+
+    function _getId() {
+      let id;
+      if (stocks.length == 0) {
+        id = 1;
+      } else {
+        id = stocks[stocks.length - 1].id.value + 1;
+      }
+      return id;
+    }
+
 
     function quantity(value) {
       obj.quantity = {
@@ -57,7 +68,7 @@ export function StocksFactory() {
   }
 
   function removeStock(id) {
-    let position = stocks.map(e => e.id.value).indexOf(id);
+    let position = stocks.map(e => e.id.value).indexOf(parseInt(id));
     stocks.splice(position, 1);
   }
 

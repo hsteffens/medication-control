@@ -3,6 +3,7 @@ import list from './list/list.module';
 import handlebar from './handlebar/handlebar.module';
 import handlelist from './handlelist/handlelist.module';
 import dynamicForm from './dynamic-form/dynamic-form.module';
+import feedback from './feedback/feedback.module';
 
 export default angular
   .module('my-app.components', [
@@ -10,7 +11,8 @@ export default angular
     list,
     handlebar,
     handlelist,
-    dynamicForm
+    dynamicForm,
+    feedback
   ])
   .run(function () {
     'ngInject';

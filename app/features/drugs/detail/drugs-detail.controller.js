@@ -13,21 +13,27 @@ export function DrugsDetailController($scope, $routeParams, drugsFactory) {
   $scope.metadata =  {};
   $scope.metadata.dataInfo = _getDataInfoMetada();
   $scope.metadata.handlers = [{
+    id: 'submit',
     type: 'lnk', 
     action: submit,
     redirect: function (){
       return 'drugs'
     },
     label: 'Submit',
-    disabled: false,
+    disabled: function (){
+      return false;
+    },
     class: 'btn-primary'
   }, {
+    id: 'clear',
     type: 'btn', 
     action: function () {
       $scope.metadata.dataInfo = _getDataInfoMetada();
     }, 
     label: 'Clear',
-    disabled: false,
+    disabled: function (){
+      return false;
+    },
     class: 'btn-light'
   }
 ];
@@ -70,7 +76,7 @@ export function DrugsDetailController($scope, $routeParams, drugsFactory) {
 
     let drug = drugsFactory.create().name(name).measurementUnit(measurementUnit).orientation(orientation).build();
     if (parseInt($routeParams.id) > 0 ) {
-      drugsFactory.remove(_getDrug());
+      drugsFactory.remove($routeParams.id);
     }
   
     drugsFactory.add(drug);

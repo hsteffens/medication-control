@@ -1,4 +1,4 @@
 <label for="{{data.id}}">{{data.label}}</label>
 <select class="form-control" id="{{data.id}}" name="{{data.label}}" ng-model="data.model" ng-required="true">
-    <option ng-repeat="option in data.option" value="{{option}}">{{option}}</option>
+    <option ng-repeat="option in data.option track by $index" value="{{option}}">{{option}}</option>
 </select>

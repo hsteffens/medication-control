@@ -11,21 +11,27 @@ export function StocksDetailController($scope, $routeParams, drugsFactory, stock
   $scope.metadata =  {};
   $scope.metadata.dataInfo = _getDataInfoMetada();
   $scope.metadata.handlers = [{
+      id: 'submit',
       type: 'lnk', 
       action: submit,
       redirect: function (){
         return 'stocks'
       },
       label: 'Submit',
-      disabled: false,
+      disabled: function (){
+        return false;
+      },
       class: 'btn-primary'
     }, {
+      id: 'clear',
       type: 'btn', 
       action: function () {
         $scope.metadata.dataInfo = _getDataInfoMetada();
       }, 
       label: 'Clear',
-      disabled: false,
+      disabled: function (){
+        return false;
+      },
       class: 'btn-light'
     }
   ];
@@ -49,7 +55,6 @@ export function StocksDetailController($scope, $routeParams, drugsFactory, stock
   function _getDrugs(){
     let drugNames = [];
     drugsFactory.drugs.forEach(drug => drugNames.push(drug.name.value));
-    console.log(drugNames);
     return drugNames;
   }
 

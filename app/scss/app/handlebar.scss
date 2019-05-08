@@ -1,3 +1,9 @@
 .btn {
   margin: 5px;
 }
+
+.disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+  color: grey;
+}

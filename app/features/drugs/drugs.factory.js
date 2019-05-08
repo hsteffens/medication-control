@@ -24,11 +24,21 @@ export function DrugsFactory() {
 
     function build() {
       obj.id = {
-        value: drugs.length + 1,
+        value: _getId(),
         show: false
       };
       
       return obj;
+    }
+
+    function _getId() {
+      let id;
+      if (drugs.length == 0) {
+        id = 1;
+      } else {
+        id = drugs[drugs.length - 1].id.value + 1;
+      }
+      return id;
     }
 
     function name(value) {
@@ -66,7 +76,7 @@ export function DrugsFactory() {
   }
 
   function removeDrug(id) {
-    let position = drugs.map(e => e.id.value).indexOf(id);
+    let position = drugs.map(e => e.id.value).indexOf(parseInt(id));
     drugs.splice(position, 1);
   }
 
